@@ -6,13 +6,15 @@ fail2ban:
     - name: git+https://github.com/fail2ban/fail2ban.git@0.10
     - require:
       - pkg: python-pip
+  service.running:
+    - name: {{ fail2ban.service }}
+    - enable: True
   {% else %}
   pkg.installed:
     - name: {{ fail2ban.package }}
-  {% endif %}
   service.running:
     - name: {{ fail2ban.service }}
     - enable: True
     - require:
       - pkg: fail2ban
-
+  {% endif %}
