@@ -4,8 +4,6 @@ fail2ban:
   {% if fail2ban.use_pip %}
   pip.installed:
     - name: git+https://github.com/fail2ban/fail2ban.git@0.10
-    - require:
-      - pkg: python-pip
   service.running:
     - name: {{ fail2ban.service }}
     - enable: True
